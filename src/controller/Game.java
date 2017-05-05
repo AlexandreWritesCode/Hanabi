@@ -1,11 +1,10 @@
-package game;
+package controller;
 
 import java.util.Scanner;
 
-import cards.Deck;
-import cards.DiscardPile;
-import cards.Hand;
-import cards.Sets;
+import model.Deck;
+import model.DiscardPile;
+import model.Sets;
 
 public class Game {
 	private static int tokens;
@@ -28,15 +27,15 @@ public class Game {
 		tokens++;
 	}
 	
-	public static void removeTokens(){
+	protected static void removeTokens(){
 		tokens--;
 	}
 	
-	public static void setNumberOfPlayers(int number){
+	private static void setNumberOfPlayers(int number){
 		numberOfPlayers = number;
 	}
 	
-	public static int getNumberOfPlayers(){
+	protected static int getNumberOfPlayers(){
 		return numberOfPlayers;
 	}
 	
@@ -118,7 +117,7 @@ public class Game {
 			case 2: 														// play card from your hand
 				player.viewPlayersHand(player);								// see cards in hand to pick from
 				System.out.print("Choose a card: ");
-				player.playCard(Integer.parseInt(read.nextLine()));			// pick card
+				System.out.println(player.playCard(Integer.parseInt(read.nextLine())));
 				player.viewPlayersHand(player);								// see new card drawn
 				player.toggleTurn();
 				System.out.println();
@@ -138,7 +137,7 @@ public class Game {
 				player.viewPlayersHand(selectedPlayer);						// display player's cards
 				System.out.print("Select card: ");				
 				selectedValue = Integer.parseInt(read.nextLine());
-				player.inspectCard(Hand.getPlayer(playerId), selectedValue);
+				System.out.println("Selected card is a " + player.inspectCard(Hand.getPlayer(playerId), selectedValue));
 				System.out.println();
 				break;
 			case 5: System.out.println(Sets.topsOfAllStacks() + "\n");		// look at table

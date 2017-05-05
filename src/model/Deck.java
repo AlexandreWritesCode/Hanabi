@@ -1,9 +1,8 @@
-package cards;
+package model;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
-import cards.Card;
 
 public class Deck{
 	private static Stack <Card> shuffledDeck;
@@ -17,7 +16,7 @@ public class Deck{
 		shuffledDeck = new Stack<Card>();
 		ArrayList<Card> unshuffledDeck = new ArrayList<Card>();					// first we create all cards
 		for (int i = 0; i < 3; i++){											// ones
-			unshuffledDeck.add(new Card(Color.WHITE,1));						// there are three of each color
+			unshuffledDeck.add(new Card(Color.WHITE,1));					// there are three of each color
 			unshuffledDeck.add(new Card(Color.BLUE, 1));
 			unshuffledDeck.add(new Card(Color.YELLOW, 1));
 			unshuffledDeck.add(new Card(Color.GREEN, 1));
@@ -32,8 +31,8 @@ public class Deck{
 				unshuffledDeck.add(new Card(Color.RED, number));
 			}
 		}
-		unshuffledDeck.add(new Card(Color.WHITE, 5));							// fives
-		unshuffledDeck.add(new Card(Color.BLUE, 5));							// there is one of each color
+		unshuffledDeck.add(new Card(Color.WHITE, 5));					// fives
+		unshuffledDeck.add(new Card(Color.BLUE, 5));						// there is one of each color
 		unshuffledDeck.add(new Card(Color.YELLOW, 5));
 		unshuffledDeck.add(new Card(Color.GREEN, 5));
 		unshuffledDeck.add(new Card(Color.RED, 5));

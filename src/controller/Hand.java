@@ -1,9 +1,12 @@
-package cards;
+package controller;
 
 import java.util.ArrayList;import java.util.List;
 import java.util.Scanner;
 
-import game.Game;
+import model.Card;
+import model.Deck;
+import model.DiscardPile;
+import model.Sets;
 
 public class Hand{
 	private List<Card> hand;										// player hand
@@ -26,7 +29,8 @@ public class Hand{
 		this.turn = false;											// not player's turn
 	}
 																	// player actions on a given turn
-	public void giveInformation(Hand player, int position, Scanner read){
+
+	protected void giveInformation(Hand player, int position, Scanner read){
 		if (!this.equals(player)){									// enforce player cannot be self
 			if(Game.getTokens() > 0){								// only if tokens available
 				Game.removeTokens(); 								// remove token
@@ -60,8 +64,8 @@ public class Hand{
 			}
 		}
 	}
-	
-	public void discard(int replace){
+
+	protected void discard(int replace){
 		Card tossOut = this.removeCardFromHand(replace);			// remove card from hand
 		DiscardPile.addToDiscard(tossOut);							// move card to discard pile
 		System.out.println("You removed a " + tossOut.printCardInfo() + ".");
@@ -72,12 +76,13 @@ public class Hand{
 		}
 	}
 	
-	public void playCard(int replace){
-		Sets.addToSet(this.removeCardFromHand(replace));			// move card to color set from hand
+	protected String playCard(int replace){
+		String s = Sets.addToSet(this.removeCardFromHand(replace));	// move card to color set from hand
 		this.addCardToHand(Deck.drawCard());						// draw new card
+		return s;
 	}
 	
-	public void viewPlayersHand(Hand player){						// prints out hand
+	protected void viewPlayersHand(Hand player){						// prints out hand
 		int i = 0;
 		System.out.println("Player " + player.name + " card's: ");
 		for (Card c : player.hand){									// example: 'Card 1. blue4'
@@ -85,15 +90,15 @@ public class Hand{
 		}
 	}
 	
-	public void inspectCard(Hand player, int position){				// look at a specific player's card
-		System.out.println("Selected card is a " + player.hand.get(position).cardInfo(this, player));
+	protected String inspectCard(Hand player, int position){				// look at a specific player's card
+		return player.hand.get(position).cardInfo(this, player);
 	}
-	
-	public void setPlayerName(String s){
+
+	protected void setPlayerName(String s){
 		this.name = s;
 	}
-	
-	public String getPlayerName(){
+
+	protected String getPlayerName(){
 		return this.name;
 	}
 	
@@ -104,8 +109,8 @@ public class Hand{
 	private void addCardToHand(Card card){							// append card to hand
 		this.hand.add(card);
 	}
-	
-	public static Hand getPlayer(int i){							// find player with id
+
+	protected static Hand getPlayer(int i){							// find player with id
 		for (Hand e : allPlayers){
 			if (e.id == i){
 				return e;
@@ -113,16 +118,16 @@ public class Hand{
 		}
 		return null;
 	}
-	
-	public boolean isTurn() {
+
+	protected boolean isTurn() {
 		return turn;
 	}
-	
-	public void toggleTurn() {
+
+	protected void toggleTurn() {
 		this.turn = !this.turn;
 	}
-	
-	public static void printPlayers(){
+
+	protected static void printPlayers(){
 		for(Hand e : allPlayers){
 			System.out.println(e.id + ". " + e.name);				// example 1. Alexandre
 		}

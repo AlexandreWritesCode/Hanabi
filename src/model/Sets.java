@@ -1,13 +1,12 @@
-package cards;
+package model;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
 
-import cards.Deck.Color;
-import game.Game;
-
-public class Sets{
+import controller.Game;
+import model.Deck.Color;
+public class Sets{											// TODO separate view/ output text from class
 	private static Set<Stack<Card>> colorSet;
 	private static Stack<Card> greenStack;
 	private static Stack<Card> redStack;
@@ -17,27 +16,27 @@ public class Sets{
 	
 	// constructor
 	public Sets(){
-		colorSet = new HashSet<Stack<Card>>();			// initialize
+		colorSet = new HashSet<Stack<Card>>();				// initialize
 		greenStack = new Stack<Card>();
 		redStack = new Stack<Card>();
 		whiteStack = new Stack<Card>();
 		blueStack = new Stack<Card>();
 		yellowStack = new Stack<Card>();
 		
-		greenStack.push(new Card(Color.GREEN, 0));		// setting up pile
+		greenStack.push(new Card(Color.GREEN, 0));	// setting up pile
 		redStack.push(new Card(Color.RED,0));
 		blueStack.push(new Card(Color.BLUE, 0));
 		yellowStack.push(new Card(Color.YELLOW, 0));
 		whiteStack.push(new Card(Color.WHITE, 0));
 		
-		colorSet.add(Sets.greenStack);					// setting up table
+		colorSet.add(Sets.greenStack);						// setting up table
 		colorSet.add(Sets.blueStack);
 		colorSet.add(Sets.yellowStack);
 		colorSet.add(Sets.whiteStack);
 		colorSet.add(Sets.redStack);
 	}
 	
-	public static void addToSet(Card c){
+	public static String addToSet(Card c){
 		int number = c.getValue();
 		String s = "";
 		switch (c.getColor()) {
@@ -112,10 +111,10 @@ public class Sets{
 				DiscardPile.addToDiscard(c);
 			}
 			break;
-		default:										// TODO never happen
+		default:
 			break;
 		}
-		System.out.println(s);
+		return s;
 	}
 	
 	private static int topOfStack(Stack<Card> aStackOfCards){

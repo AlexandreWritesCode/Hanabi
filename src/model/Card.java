@@ -1,6 +1,7 @@
-package cards;
+package model;
 
-import cards.Deck.Color;
+import controller.Hand;
+import model.Deck.Color;
 
 public class Card{
 	private Color color;										// cards have a unique color: RED, BLUE, GREEN, YELLOW, WHITE
@@ -33,7 +34,7 @@ public class Card{
 		}
 	}
 	
-	public String printColor(){
+	private String printColor(){
 		Color c = this.getColor();
 		String s;
 		switch (c) {
@@ -61,7 +62,7 @@ public class Card{
 		return value;
 	}
 
-	public boolean isColorKnown() {
+	private boolean isColorKnown() {
 		return knowsColor;
 	}
 
@@ -69,7 +70,7 @@ public class Card{
 		this.knowsColor = knowsColor;
 	}
 
-	public boolean isValueKnown() {
+	private boolean isValueKnown() {
 		return knowsValue;
 	}
 
