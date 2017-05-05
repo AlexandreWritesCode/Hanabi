@@ -3,8 +3,9 @@ Backend implementation of the cooperative boardgame Hanabi in Java, therefore pl
 
 ## Lessons Learned
  - Refreshing of Object Oriented Programming concepts
- - Fun work with Java and Eclipse
- - Using Git/hub with Eclipse's plugins
+ - Fun work with Java and IDEA/ Eclipse
+ - Using Git/hub with IDEA/ Eclipse's plugins
+ - Using IDEA IDE
  
 ## Hanabi
 Rules explained here: https://en.wikipedia.org/wiki/Hanabi_(card_game)
